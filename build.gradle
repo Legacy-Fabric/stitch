@@ -94,13 +94,15 @@ publishing {
 
 	// select the repositories you want to publish to
 	repositories {
-		if (ENV.MAVEN_URL) {
+		if (ENV.MAVEN_PUBLISH_TOKEN) {
 			repositories.maven {
-				name "fabric"
-				url ENV.MAVEN_URL
+				url 'https://maven.legacyfabric.net/'
 				credentials {
-					username ENV.MAVEN_USERNAME
-					password ENV.MAVEN_PASSWORD
+					username 'legacyfabric-ci'
+					password ENV.MAVEN_PUBLISH_TOKEN
+				}
+				authentication {
+					basic(BasicAuthentication)
 				}
 			}
 		}
