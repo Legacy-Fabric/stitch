@@ -10,7 +10,7 @@ sourceCompatibility = 1.8
 def ENV = System.getenv()
 version = "0.6.2" + (ENV.GITHUB_ACTIONS ? "" : "+local")
 
-group = 'net.fabricmc'
+group = 'net.legacyfabric'
 archivesBaseName = project.name.toLowerCase()
 
 repositories {
