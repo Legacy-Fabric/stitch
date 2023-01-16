@@ -94,17 +94,17 @@ publishing {
 
 	// select the repositories you want to publish to
 	repositories {
-		if (ENV.MAVEN_PUBLISH_TOKEN) {
-			repositories.maven {
-				url 'https://maven.legacyfabric.net/'
-				credentials {
-					username 'legacyfabric-ci'
-					password ENV.MAVEN_PUBLISH_TOKEN
-				}
-				authentication {
-					basic(BasicAuthentication)
-				}
+		if (ENV.MAVEN_PUBLISH_CREDENTIALS) {
+		    maven {
+			url "https://repo.legacyfabric.net/repository/legacyfabric"
+			credentials {
+			    username ENV.MAVEN_PUBLISH_CREDENTIALS.split(":")[0]
+			    password ENV.MAVEN_PUBLISH_CREDENTIALS.split(":")[1]
 			}
+			authentication {
+			    basic(BasicAuthentication)
+			}
+		    }
 		}
 	}
 }
@@ -116,7 +116,7 @@ test {
 // A task to ensure that the version being released has not already been released.
 task checkVersion {
 	doFirst {
-		def url = new URL("https://maven.legacyfabric.net/net/legacyfabric/stitch/maven-metadata.xml")
+		def url = new URL("https://repo.legacyfabric.net/repository/legacyfabric/net/legacyfabric/stitch/maven-metadata.xml")
 		if (url != null) {
 			def xml = url.text
 			if (xml != null && !xml.isEmpty()) {
