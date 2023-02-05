@@ -101,14 +101,14 @@ publishing {
 	repositories {
 		if (ENV.MAVEN_PUBLISH_CREDENTIALS) {
 		    maven {
-			url "https://repo.legacyfabric.net/repository/legacyfabric"
-			credentials {
-			    username ENV.MAVEN_PUBLISH_CREDENTIALS.split(":")[0]
-			    password ENV.MAVEN_PUBLISH_CREDENTIALS.split(":")[1]
-			}
-			authentication {
-			    basic(BasicAuthentication)
-			}
+				url "https://repo.legacyfabric.net/repository/legacyfabric"
+				credentials {
+					username ENV.MAVEN_PUBLISH_CREDENTIALS.split(":")[0]
+					password ENV.MAVEN_PUBLISH_CREDENTIALS.split(":")[1]
+				}
+				authentication {
+					basic(BasicAuthentication)
+				}
 		    }
 		}
 	}
