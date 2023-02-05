@@ -50,7 +50,8 @@ class GenState {
     private final List<Integer> conflictChoices = new ArrayList<>();
 
     public GenState() {
-        this.obfuscatedPatterns.add(Pattern.compile("^[^/]*$")); // Default ofbfuscation. Minecraft classes without a package are obfuscated.
+        // Default obfuscation. Minecraft classes with a lowercase name are always obfuscated.
+        this.obfuscatedPatterns.add(Pattern.compile("^([a-z0-9]+|([a-zA-Z0-9]+[$])+[a-z0-9]+|(([a-zA-Z0-9]+/)+([a-z0-9]+|([a-zA-Z0-9]+[$])+[a-z0-9]+)))$"));
     }
 
     public void setConflictChoices(String choices) {
