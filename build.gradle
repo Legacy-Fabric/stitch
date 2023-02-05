@@ -67,7 +67,7 @@ task allJar(type: Jar) {
 		configurations.ship.collect {
 			it.isDirectory() ? it : zipTree(it)
 		}
-	}
+	}.setDuplicatesStrategy(DuplicatesStrategy.INCLUDE)
 	manifest {
 		attributes 'Implementation-Title': 'Stitch',
 				'Implementation-Version': archiveVersion,
